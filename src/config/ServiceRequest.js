@@ -1,22 +1,20 @@
 import axios from 'axios'
 
 class ServiceRequest {
-  apiUrl = process.env.API_URL
-
   get (url) {
-    return axios.get(this.apiUrl + url)
+    return axios.get(url)
   }
 
   post (url, dados) {
-    return axios.post(this.apiUrl + url, dados)
+    return axios.post(url, dados)
   }
 
   patch (url, dados) {
-    return axios.patch(this.apiUrl + url, dados)
+    return axios.patch(url, dados)
   }
 
   delete (url, dados) {
-    return axios.delete(this.apiUrl + url, dados)
+    return axios.delete(url, dados)
   }
 }
 

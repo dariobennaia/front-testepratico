@@ -24,6 +24,7 @@ export default {
   data () {
     return {
       serviceRequest: new ServiceRequest(),
+      apiUrl: process.env.API_URL,
       url: '/refrigerantes/tipos-refrigerantes',
       tiposRefrigerantes: []
     }
@@ -31,7 +32,7 @@ export default {
   methods: {
     obterTiposRefrigerantes () {
       let self = this
-      self.serviceRequest.get(self.url).then(response => {
+      self.serviceRequest.get(this.apiUrl + self.url).then(response => {
         self.tiposRefrigerantes = []
         response.data.map(function (value) {
           self.tiposRefrigerantes.push({id: value.id_tipo_refrigerante, value: value.tipo_refrigerante})

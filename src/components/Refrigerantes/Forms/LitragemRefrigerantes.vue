@@ -24,6 +24,7 @@ export default {
   data () {
     return {
       serviceRequest: new ServiceRequest(),
+      apiUrl: process.env.API_URL,
       url: '/refrigerantes/litragem-refrigerantes',
       litragensRefrigerantes: []
     }
@@ -31,7 +32,7 @@ export default {
   methods: {
     obterLitragemRefrigerantes () {
       let self = this
-      self.serviceRequest.get(self.url).then(function (response) {
+      self.serviceRequest.get(this.apiUrl + self.url).then(function (response) {
         self.litragensRefrigerantes = []
         response.data.map(function (value) {
           self.litragensRefrigerantes.push({id: value.id_litragem_refrigerante, value: value.litragem_refrigerante})

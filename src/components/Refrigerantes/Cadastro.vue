@@ -46,6 +46,7 @@ export default {
   data () {
     return {
       serviceRequest: new ServiceRequest(),
+      apiUrl: process.env.API_URL,
       url: '/refrigerantes',
       alert: {
         tipo: null,
@@ -58,7 +59,7 @@ export default {
     salvaDados (e) {
       let dados = $('#form').serialize()
       let self = this
-      self.serviceRequest.post(self.url, dados).then(response => {
+      self.serviceRequest.post(this.apiUrl + self.url, dados).then(response => {
         self.exibirMensagensDeSucesso('Refrigerante cadastrado com sucesso!')
         setTimeout(function () {
           self.redirecionarParaListagem()

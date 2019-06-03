@@ -49,6 +49,7 @@ export default {
   data () {
     return {
       serviceRequest: new ServiceRequest(),
+      apiUrl: process.env.API_URL,
       url: '/refrigerantes',
       botoesDeAcao: false,
       alert: {
@@ -63,7 +64,7 @@ export default {
       let dados = $('#form').serialize()
       let self = this
       self.botoesDeAcao = true
-      self.serviceRequest.patch(self.url + '/' + self.$route.params.idRefrigerante, dados).then(response => {
+      self.serviceRequest.patch(this.apiUrl + self.url + '/' + self.$route.params.idRefrigerante, dados).then(response => {
         self.exibirMensagensDeSucesso('Refrigerante atualizado com sucesso!')
         self.botoesDeAcao = false
         setTimeout(function () {
