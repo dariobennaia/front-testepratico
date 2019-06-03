@@ -185,7 +185,7 @@ export default {
           {'id': 20, 'value': 20},
           {'id': 30, 'value': 30}
         ],
-        totalRegistrosPorPaginasSelecionado: 5
+        totalRegistrosPorPaginasSelecionado: 10
       },
       alert: {
         habilitar: false,
