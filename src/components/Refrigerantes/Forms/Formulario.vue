@@ -35,6 +35,7 @@ export default {
   data () {
     return {
       serviceRequest: new ServiceRequest(),
+      apiUrl: process.env.API_URL,
       url: '/refrigerantes',
       marca: null,
       sabor: null,
@@ -52,7 +53,7 @@ export default {
   methods: {
     obterDadosDoRefrigerantes () {
       let self = this
-      self.serviceRequest.get(self.url + '/' + self.id_refrigerante).then(response => {
+      self.serviceRequest.get(this.apiUrl + self.url + '/' + self.id_refrigerante).then(response => {
         self.marca = response.data.marca
         self.sabor = response.data.sabor
         self.estoque = response.data.estoque

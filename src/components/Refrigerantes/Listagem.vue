@@ -165,6 +165,7 @@ export default {
   data () {
     return {
       serviceRequest: new ServiceRequest(),
+      apiUrl: process.env.API_URL,
       urlExclusao: '/refrigerantes',
       urlInformacoes: '/refrigerantes',
       urlListagem: '/refrigerantes/paginacao',
@@ -184,7 +185,7 @@ export default {
           {'id': 20, 'value': 20},
           {'id': 30, 'value': 30}
         ],
-        totalRegistrosPorPaginasSelecionado: 10
+        totalRegistrosPorPaginasSelecionado: 5
       },
       alert: {
         habilitar: false,
@@ -198,7 +199,7 @@ export default {
   methods: {
     obterInformacoesDoRefrigerantes (idRefrigerante) {
       let self = this
-      self.serviceRequest.get(self.urlInformacoes + '/' + idRefrigerante)
+      self.serviceRequest.get(this.apiUrl + self.urlInformacoes + '/' + idRefrigerante)
         .then(response => {
           self.dadosModal = response.data
         })
@@ -211,7 +212,7 @@ export default {
         return false
       }
 
-      self.serviceRequest.delete(self.urlExclusao + '/' + idRefrigerante)
+      self.serviceRequest.delete(this.apiUrl + self.urlExclusao + '/' + idRefrigerante)
         .then(response => {
           self.exibirMensagensDeSucesso('Refrigerante escluido com sucesso!')
           self.listarRefrigerantes()
@@ -230,7 +231,7 @@ export default {
         idsRefrigerantes.push($(this).val())
       })
 
-      self.serviceRequest.delete(self.urlExclusao, {data: {id_refrigerante: idsRefrigerantes}})
+      self.serviceRequest.delete(this.apiUrl + self.urlExclusao, {data: {id_refrigerante: idsRefrigerantes}})
         .then(response => {
           self.exibirMensagensDeSucesso('Refrigerante(s) escluido(s) com sucesso!')
           self.listarRefrigerantes()
@@ -257,43 +258,43 @@ export default {
 
     listarRefrigerantes () {
       let dados = $('#form_pesquisa').serialize()
-      this.serviceRequest.get(this.urlListagem + '/' + this.table.totalRegistrosPorPaginasSelecionado + '?=' + dados)
+      this.serviceRequest.get(this.apiUrl + this.urlListagem + '/' + this.table.totalRegistrosPorPaginasSelecionado + '?=' + dados)
         .then(this.call)
     },
 
     proximaPagina () {
       let dados = $('#form_pesquisa').serialize()
-      this.serviceRequest.get(this.table.dados.next_page_url + '?' + dados)
+      this.serviceRequest.get(this.table.dados.next_page_url + '&' + dados)
         .then(this.call)
     },
 
     paginaAnterior () {
       let dados = $('#form_pesquisa').serialize()
-      this.serviceRequest.get(this.table.dados.prev_page_url + '?' + dados)
+      this.serviceRequest.get(this.table.dados.prev_page_url + '&' + dados)
         .then(this.call)
     },
 
     primeiraPagina () {
       let dados = $('#form_pesquisa').serialize()
-      this.serviceRequest.get(this.table.dados.first_page_url + '?' + dados)
+      this.serviceRequest.get(this.table.dados.first_page_url + '&' + dados)
         .then(this.call)
     },
 
     ultimaPagina () {
       let dados = $('#form_pesquisa').serialize()
-      this.serviceRequest.get(this.table.dados.last_page_url + '?' + dados)
+      this.serviceRequest.get(this.table.dados.last_page_url + '&' + dados)
         .then(this.call)
     },
 
     paginaSelecionada (pagina) {
       let dados = $('#form_pesquisa').serialize()
-      this.serviceRequest.get(this.urlListagem + '/' + this.table.totalRegistrosPorPaginasSelecionado + '?' + dados + '&page=' + pagina)
+      this.serviceRequest.get(this.apiUrl + this.urlListagem + '/' + this.table.totalRegistrosPorPaginasSelecionado + '?' + dados + '&page=' + pagina)
         .then(this.call)
     },
 
     pesquisar (e) {
       let dados = $('#form_pesquisa').serialize()
-      this.serviceRequest.get(this.urlListagem + '/' + this.table.totalRegistrosPorPaginasSelecionado + '?' + dados)
+      this.serviceRequest.get(this.apiUrl + this.urlListagem + '/' + this.table.totalRegistrosPorPaginasSelecionado + '?' + dados)
         .then(this.call)
       e.preventDefault()
     },
