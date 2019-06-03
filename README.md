@@ -1,30 +1,6 @@
-# front-testepratico
+## Frontend teste prático - Fortics (2º Parte)
 
-> Teste pratico Fortics
+Esta é a 2º parte do projeto de teste prático, se constituindo no frontend. Este mesmo ficará responsável por se comunicar 
+com a Api que é a primeira parte do projeto. Caso você não tenha instalado, basta acessar [1º Parte - Api teste pratico](https://github.com/dariobennaia/api-testepratico)
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+[Documentação completa](docs/principal.md).
